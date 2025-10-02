@@ -13,8 +13,8 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata: Metadata = {
-  title: "CryptoStocks",
-  description: "Trade Crypto Stocks, get personalized alerts, and more",
+  title: "TrackStock",
+  description: "Trade real-time stock prices, get personalized alerts, and more",
 };
 
 export default function RootLayout({
