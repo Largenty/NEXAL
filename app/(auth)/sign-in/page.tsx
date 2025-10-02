@@ -4,13 +4,17 @@ import { Button } from "@/components/ui/button";
 import React from "react";
 import { SubmitHandler, useForm } from "react-hook-form";
 import FooterLink from "@/components/forms/FooterLink";
+import { toast } from "sonner";
+import { signInWithEmail } from "@/lib/actions/auth.actions";
+import { useRouter } from "next/navigation";
 
 const SignInPage = () => {
+    const router = useRouter();
     const {
         register,
         handleSubmit,
         formState: { errors, isSubmitting },
-    } = useForm<SignUpFormData>({
+    } = useForm<SignInFormData>({
         defaultValues: {
             email: "",
             password: "",
@@ -18,13 +22,22 @@ const SignInPage = () => {
         mode: "onBlur",
     });
 
-    const onSubmit: SubmitHandler<SignUpFormData> = async (
-        data: SignUpFormData
+    const onSubmit = async (
+        data: SignInFormData
     ) => {
         try {
-            console.log(data);
-        } catch (error) {
+            // signUpWithEmail
+            const result = await signInWithEmail(data);
+            if (result.success) {
+                router.push("/");
+            }
+        } catch (error: any) {
             console.log(error);
+            toast.error("Sign in fail", {
+                description: error.instanceOf(Error)
+                    ? error.message
+                    : "Something went wrong",
+            });
         }
     };
 
