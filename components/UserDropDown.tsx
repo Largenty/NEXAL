@@ -13,15 +13,15 @@ import { Button } from "./ui/button";
 import { DropdownMenuLabel } from "@radix-ui/react-dropdown-menu";
 import { LogOutIcon } from "lucide-react";
 import NavItems from "./NavItems";
+import { signOut } from "@/lib/actions/auth.actions";
 
-const UserDropDown = () => {
+const UserDropDown = ({ user }: { user: User }) => {
     const router = useRouter();
 
     const handleSignOut = async () => {
+        await signOut();
         router.push("/sign-in");
     };
-
-    const user = { name: "John Doe", email: "john.doe@example.com" };
 
     return (
         <DropdownMenu>

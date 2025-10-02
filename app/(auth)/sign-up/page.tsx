@@ -11,8 +11,12 @@ import {
 } from "@/lib/constants";
 import { CountrySelectField } from "@/components/forms/CountrySelectField";
 import FooterLink from "@/components/forms/FooterLink";
+import { useRouter } from "next/navigation";
+import { signUpWithEmail } from "@/lib/actions/auth.actions";
+import { toast } from "sonner";
 
 const SignUpPage = () => {
+    const router = useRouter();
     const {
         register,
         handleSubmit,
@@ -36,9 +40,18 @@ const SignUpPage = () => {
         data: SignUpFormData
     ) => {
         try {
-            console.log(data);
-        } catch (error) {
+            // signUpWithEmail
+            const result = await signUpWithEmail(data);
+            if (result.success) {
+                router.push("/");
+            }
+        } catch (error: any) {
             console.log(error);
+            toast.error("Sign up fail", {
+                description: error.instanceOf(Error)
+                    ? error.message
+                    : "Something went wrong",
+            });
         }
     };
 
@@ -152,7 +165,11 @@ const SignUpPage = () => {
                         : "Start your Investment Journey"}
                 </Button>
 
-                <FooterLink text="Already have an account?" linkText="Sign In" href="/sign-in" />
+                <FooterLink
+                    text="Already have an account?"
+                    linkText="Sign In"
+                    href="/sign-in"
+                />
             </form>
         </>
     );
