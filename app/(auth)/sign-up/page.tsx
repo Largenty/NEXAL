@@ -22,7 +22,6 @@ const SignUpPage = () => {
         handleSubmit,
         control,
         formState: { errors, isSubmitting },
-        reset,
     } = useForm<SignUpFormData>({
         defaultValues: {
             fullName: "",
@@ -45,12 +44,11 @@ const SignUpPage = () => {
             if (result.success) {
                 router.push("/");
             }
-        } catch (error: any) {
-            console.log(error);
+        } catch (err: unknown) {
+            console.log(err);
             toast.error("Sign up fail", {
-                description: error.instanceOf(Error)
-                    ? error.message
-                    : "Something went wrong",
+                description:
+                    err instanceof Error ? err.message : "Something went wrong",
             });
         }
     };

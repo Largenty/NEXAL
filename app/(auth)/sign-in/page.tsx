@@ -2,7 +2,7 @@
 import InputField from "@/components/forms/InputField";
 import { Button } from "@/components/ui/button";
 import React from "react";
-import { SubmitHandler, useForm } from "react-hook-form";
+import { useForm } from "react-hook-form";
 import FooterLink from "@/components/forms/FooterLink";
 import { toast } from "sonner";
 import { signInWithEmail } from "@/lib/actions/auth.actions";
@@ -22,21 +22,18 @@ const SignInPage = () => {
         mode: "onBlur",
     });
 
-    const onSubmit = async (
-        data: SignInFormData
-    ) => {
+    const onSubmit = async (data: SignInFormData) => {
         try {
             // signUpWithEmail
             const result = await signInWithEmail(data);
             if (result.success) {
                 router.push("/");
             }
-        } catch (error: any) {
-            console.log(error);
+        } catch (err: unknown) {
+            console.log(err);
             toast.error("Sign in fail", {
-                description: error.instanceOf(Error)
-                    ? error.message
-                    : "Something went wrong",
+                description:
+                    err instanceof Error ? err.message : "Something went wrong",
             });
         }
     };
