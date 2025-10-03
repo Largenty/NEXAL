@@ -97,22 +97,29 @@ export async function getUserWatchlistWithData(): Promise<StockWithData[]> {
 
         await connectToMongoDB();
 
-        const items = await Watchlist.find({ userId }).lean();
+        const items = await Watchlist.find({ userId }).lean<
+            {
+                userId?: string;
+                symbol?: string;
+                company?: string;
+                addedAt?: Date | string;
+            }[]
+        >();
         const symbols = items
-            .map((i: any) => String(i.symbol || ""))
+            .map((i) => String(i?.symbol || ""))
             .filter(Boolean);
         if (symbols.length === 0) return [];
 
         const enriched = await getBatchQuotesAndMetrics(symbols);
 
-        const result: StockWithData[] = items.map((i: any) => {
-            const sym = String(i.symbol || "").toUpperCase();
+        const result: StockWithData[] = items.map((i) => {
+            const sym = String(i?.symbol || "").toUpperCase();
             const e = enriched[sym] || ({} as Partial<StockWithData>);
             return {
-                userId: String(i.userId || userId),
+                userId: String(i?.userId || userId),
                 symbol: sym,
-                company: String(i.company || sym),
-                addedAt: i.addedAt ? new Date(i.addedAt) : new Date(),
+                company: String(i?.company || sym),
+                addedAt: i?.addedAt ? new Date(i.addedAt) : new Date(),
                 currentPrice: e.currentPrice,
                 changePercent: e.changePercent,
                 priceFormatted: e.priceFormatted,

@@ -27,6 +27,13 @@ async function fetchJSON<T>(
 
 export { fetchJSON };
 
+type FinnhubProfile2 = {
+    name?: string;
+    ticker?: string;
+    exchange?: string;
+    marketCapitalization?: number;
+};
+
 // Fetch quote (current price and percent change) for a single symbol
 export async function getQuote(symbol: string): Promise<QuoteData> {
     try {
@@ -63,7 +70,9 @@ export async function getKeyMetrics(
             upper
         )}&metric=all&token=${token}`;
         const [profile, financials] = await Promise.all([
-            fetchJSON<any>(profileUrl, 3600).catch(() => ({})),
+            fetchJSON<FinnhubProfile2>(profileUrl, 3600).catch(
+                () => ({} as FinnhubProfile2)
+            ),
             fetchJSON<FinancialsData>(financialsUrl, 600).catch(
                 () => ({} as FinancialsData)
             ),
@@ -96,7 +105,7 @@ export async function getKeyMetrics(
 export async function getBatchQuotesAndMetrics(
     symbols: string[]
 ): Promise<Record<string, StockWithData>> {
-    const result: Record<string, StockWithData> = {} as any;
+    const result: Record<string, StockWithData> = {};
     const clean = (symbols || [])
         .map((s) => (s || "").trim().toUpperCase())
         .filter((s, idx, arr) => s && arr.indexOf(s) === idx);
@@ -248,6 +257,8 @@ export const searchStocks = cache(
             const trimmed = typeof query === "string" ? query.trim() : "";
 
             let results: FinnhubSearchResult[] = [];
+            const profileExchangeBySymbol: Record<string, string | undefined> =
+                {};
 
             if (!trimmed) {
                 // Fetch top 10 popular symbols' profiles
@@ -259,10 +270,13 @@ export const searchStocks = cache(
                                 sym
                             )}&token=${token}`;
                             // Revalidate every hour
-                            const profile = await fetchJSON<any>(url, 3600);
+                            const profile = await fetchJSON<FinnhubProfile2>(
+                                url,
+                                3600
+                            );
                             return { sym, profile } as {
                                 sym: string;
-                                profile: any;
+                                profile: FinnhubProfile2 | null;
                             };
                         } catch (e) {
                             console.error(
@@ -272,7 +286,7 @@ export const searchStocks = cache(
                             );
                             return { sym, profile: null } as {
                                 sym: string;
-                                profile: any;
+                                profile: FinnhubProfile2 | null;
                             };
                         }
                     })
@@ -283,8 +297,7 @@ export const searchStocks = cache(
                         const symbol = sym.toUpperCase();
                         const name: string | undefined =
                             profile?.name || profile?.ticker || undefined;
-                        const exchange: string | undefined =
-                            profile?.exchange || undefined;
+                        const exchange: string | undefined = profile?.exchange;
                         if (!name) return undefined;
                         const r: FinnhubSearchResult = {
                             symbol,
@@ -292,10 +305,7 @@ export const searchStocks = cache(
                             displaySymbol: symbol,
                             type: "Common Stock",
                         };
-                        // We don't include exchange in FinnhubSearchResult type, so carry via mapping later using profile
-                        // To keep pipeline simple, attach exchange via closure map stage
-                        // We'll reconstruct exchange when mapping to final type
-                        (r as any).__exchange = exchange; // internal only
+                        profileExchangeBySymbol[symbol] = exchange;
                         return r;
                     })
                     .filter((x): x is FinnhubSearchResult => Boolean(x));
@@ -313,9 +323,7 @@ export const searchStocks = cache(
                     const name = r.description || upper;
                     const exchangeFromDisplay =
                         (r.displaySymbol as string | undefined) || undefined;
-                    const exchangeFromProfile = (r as any).__exchange as
-                        | string
-                        | undefined;
+                    const exchangeFromProfile = profileExchangeBySymbol[upper];
                     const exchange =
                         exchangeFromDisplay || exchangeFromProfile || "US";
                     const type = r.type || "Stock";

@@ -1,6 +1,6 @@
-import { $ZodAny, betterAuth } from "better-auth";
+import { betterAuth } from "better-auth";
 import { mongodbAdapter } from "better-auth/adapters/mongodb";
-import {connectToMongoDB} from "@/database/mongoose";
+import { connectToMongoDB } from "@/database/mongoose";
 import { nextCookies } from "better-auth/next-js";
 
 let authInstance: ReturnType<typeof betterAuth> | null = null;
@@ -14,7 +14,9 @@ export const getAuth = async () => {
     if (!db) throw new Error("Failed to connect to MongoDB");
 
     authInstance = betterAuth({
-        database: mongodbAdapter(db as any),
+        database: mongodbAdapter(
+            db as unknown as Parameters<typeof mongodbAdapter>[0]
+        ),
         secret: process.env.BETTER_AUTH_SECRET,
         baseURL: process.env.BETTER_AUTH_BASE_URL,
         emailAndPassword: {
