@@ -56,7 +56,7 @@ declare global {
     };
 
     type SearchCommandProps = {
-        renderAs?: "button" | "text";
+        renderAs?: 'button' | 'text';
         label?: string;
         initialStocks: StockWithWatchlistStatus[];
     };
@@ -72,6 +72,8 @@ declare global {
         name: string;
         email: string;
     };
+
+    type UserForNewsEmail = User;
 
     type Stock = {
         symbol: string;
@@ -107,7 +109,7 @@ declare global {
         company: string;
         isInWatchlist: boolean;
         showTrashIcon?: boolean;
-        type?: "button" | "icon";
+        type?: 'button' | 'icon';
         onWatchlistChange?: (symbol: string, isAdded: boolean) => void;
     };
 
@@ -171,9 +173,9 @@ declare global {
     type SearchCommandProps = {
         open?: boolean;
         setOpen?: (open: boolean) => void;
-        renderAs?: "button" | "text";
+        renderAs?: 'button' | 'text';
         buttonLabel?: string;
-        buttonVariant?: "primary" | "secondary";
+        buttonVariant?: 'primary' | 'secondary';
         className?: string;
     };
 
@@ -181,7 +183,7 @@ declare global {
         symbol: string;
         company: string;
         alertName: string;
-        alertType: "upper" | "lower";
+        alertType: 'upper' | 'lower';
         threshold: string;
     };
 
@@ -211,7 +213,7 @@ declare global {
         company: string;
         alertName: string;
         currentPrice: number;
-        alertType: "upper" | "lower";
+        alertType: 'upper' | 'lower';
         threshold: number;
         changePercent?: number;
     };
