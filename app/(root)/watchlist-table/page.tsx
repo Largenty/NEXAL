@@ -8,7 +8,7 @@ import { useState, useTransition } from "react";
 export default function Page() {
     const [isPending, startTransition] = useTransition();
     const [status, setStatus] = useState<string>("");
-    
+
 
     const handleAdd = () => {
         setStatus("");
@@ -31,7 +31,7 @@ export default function Page() {
                     {status}
                 </p>
             )}
-            <WatchlistTable />
+            <WatchlistTable watchlist={[]} />
         </div>
     );
 }
