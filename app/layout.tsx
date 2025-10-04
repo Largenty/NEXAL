@@ -14,7 +14,7 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata: Metadata = {
-  title: "TrackStock",
+  title: "SIGMA",
   description: "Trade real-time stock prices, get personalized alerts, and more",
 };
 

@@ -15,16 +15,20 @@ const layout = async ({ children }: { children: React.ReactNode }) => {
 
     return (
         <main className="auth-layout">
-            <section className="auth-left-section scrollbar-hide-default">
+            <section className="auth-left-section scrollbar-hide-default gap-2">
                 <Link href="/" className="auth-logo">
-                    <Image
-                        src="/assets/icons/logo.svg"
-                        alt="TrackStock logo"
-                        width={140}
-                        height={32}
-                        className="h-8 w-auto"
-                    />
+                    <div className="flex  items-center gap-4">
+                        <Image
+                            src="/assets/icons/logo.svg"
+                            alt="SIGMA logo"
+                            width={140}
+                            height={32}
+                            className="h-8 w-auto"
+                        />
+                        <h1 className="text-3xl font-bold">SIGMA</h1>
+                    </div>
                 </Link>
+
                 <div className="pb-6 lg:pb-8 flex-1">{children}</div>
             </section>
             <section className="auth-right-section">
@@ -32,7 +36,7 @@ const layout = async ({ children }: { children: React.ReactNode }) => {
                     <blockquote className="auth-blockquote">
                         <p className="text-gray-400 mb-1">
                             “Every day, millions of people around the world rely
-                            on TrackStock to make smarter stock decisions.”
+                            on SIGMA to make smarter stock decisions.”
                         </p>
                     </blockquote>
                     <div className="flex items-center justify-between">
@@ -60,7 +64,7 @@ const layout = async ({ children }: { children: React.ReactNode }) => {
                 </div>
                 <div className="flex-1 relative">
                     <Image
-                        src="/assets/images/dashboard-preview.png"
+                        src="/assets/images/image.png"
                         alt="Dashboard Preview"
                         width={1440}
                         height={1150}

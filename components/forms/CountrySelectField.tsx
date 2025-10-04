@@ -9,7 +9,6 @@ import {
     PopoverTrigger,
 } from "@/components/ui/popover";
 
-
 import { Button } from "@/components/ui/button";
 import { Label } from "@/components/ui/label";
 import {
@@ -104,7 +103,7 @@ const CountrySelect = ({
                                 >
                                     <Check
                                         className={cn(
-                                            "mr-2 h-4 w-4 text-yellow-500",
+                                            "mr-2 h-4 w-4 text-[#00E560]",
                                             value === country.value
                                                 ? "opacity-100"
                                                 : "opacity-0"
