@@ -23,10 +23,10 @@ export const sendWelcomeEmail = async ({
     ).replace("{{intro}}", intro);
 
     const mailOptions = {
-        from: `"Sigma" <largenty@gmail.com>`,
+        from: `"NEXAL" <largenty@gmail.com>`,
         to: email,
-        subject: `Welcome to Sigma - your stock market toolkit is ready!`,
-        text: "Thanks for joining Sigma",
+        subject: `Welcome to NEXAL - your stock market toolkit is ready!`,
+        text: "Thanks for joining NEXAL",
         html: htmlTemplate,
     };
 
@@ -48,10 +48,10 @@ export const sendNewsSummaryEmail = async ({
     ).replace("{{newsContent}}", newsContent);
 
     const mailOptions = {
-        from: `"Sigma News" <largenty@@gmail.com>`,
+        from: `"NEXAL News" <largenty@@gmail.com>`,
         to: email,
         subject: `📈 Market News Summary Today - ${date}`,
-        text: `Today's market news summary from Sigma`,
+        text: `Today's market news summary from NEXAL`,
         html: htmlTemplate,
     };
 

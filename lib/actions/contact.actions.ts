@@ -23,7 +23,7 @@ export async function sendContactEmail(formData: FormData) {
 
     try {
         await transporter.sendMail({
-            from: `SIGMA Contact <${process.env.NODEMAILER_EMAIL}>`,
+            from: `NEXAL Contact <${process.env.NODEMAILER_EMAIL}>`,
             to: "largenty@gmail.com",
             replyTo: fromEmail,
             subject: `[Contact] ${title}`,

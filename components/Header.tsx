@@ -14,12 +14,12 @@ const Header = async ({ user }: { user: User }) => {
                     <div className="flex  items-center gap-4">
                         <Image
                             src="/assets/icons/logo.svg"
-                            alt="Sigma logo"
+                            alt="NEXAL logo"
                             width={140}
                             height={32}
                             className="h-8 w-auto cursor-pointer"
                         />
-                        <h1 className="text-2xl font-bold text-white">SIGMA</h1>
+                        <h1 className="text-2xl font-bold text-white">NEXAL</h1>
                     </div>
                 </Link>
                 <nav className="hidden sm:block">

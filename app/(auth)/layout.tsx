@@ -20,12 +20,12 @@ const layout = async ({ children }: { children: React.ReactNode }) => {
                     <div className="flex  items-center gap-4">
                         <Image
                             src="/assets/icons/logo.svg"
-                            alt="SIGMA logo"
+                            alt="NEXAL logo"
                             width={140}
                             height={32}
                             className="h-8 w-auto"
                         />
-                        <h1 className="text-3xl font-bold">SIGMA</h1>
+                        <h1 className="text-3xl font-bold">NEXAL</h1>
                     </div>
                 </Link>
 
@@ -36,7 +36,7 @@ const layout = async ({ children }: { children: React.ReactNode }) => {
                     <blockquote className="auth-blockquote">
                         <p className="text-gray-400 mb-1">
                             “Every day, millions of people around the world rely
-                            on SIGMA to make smarter stock decisions.”
+                            on NEXAL to make smarter stock decisions.”
                         </p>
                     </blockquote>
                     <div className="flex items-center justify-between">
