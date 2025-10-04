@@ -9,7 +9,7 @@ export default function NotFound() {
                 </div>
 
                 <h1 className="text-4xl md:text-6xl font-black tracking-tight bg-gradient-to-b from-foreground to-muted-foreground bg-clip-text text-transparent">
-                    Page not found, stay SIGMA 🕶️
+                    Page not found, stay NEXAL 🕶️
                 </h1>
 
                 <p className="mt-4 text-sm md:text-base text-muted-foreground">
@@ -31,7 +31,6 @@ export default function NotFound() {
                         Open markets
                     </Link>
                 </div>
-
 
                 <div className="pointer-events-none absolute inset-0 -z-10 select-none opacity-30 [mask-image:radial-gradient(50%_50%_at_50%_50%,black,transparent)]">
                     <div className="absolute inset-0 bg-gradient-to-br from-transparent via-primary/10 to-transparent" />

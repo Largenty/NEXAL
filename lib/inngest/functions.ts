@@ -41,7 +41,7 @@ export const sendSignUpEmail = inngest.createFunction(
             const part = response.candidates?.[0]?.content?.parts?.[0];
             const introText =
                 (part && "text" in part ? part.text : null) ||
-                "Thanks for joining Sigma. You now have the tools to track markets and make smarter moves.";
+                "Thanks for joining NEXAL. You now have the tools to track markets and make smarter moves.";
 
             const {
                 data: { email, name },
