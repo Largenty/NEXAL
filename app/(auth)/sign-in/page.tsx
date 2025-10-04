@@ -80,13 +80,14 @@ const SignInPage = () => {
                                 "Password must be at least 3 characters long",
                         },
                     }}
+                    type="password"
                     disabled={isSubmitting}
                 />
 
                 <Button
                     type="submit"
                     variant="secondary"
-                    className="yellow-btn w-full mt-5"
+                    className="green-btn w-full mt-5"
                     disabled={isSubmitting}
                 >
                     {isSubmitting ? "Sign In" : "Start your Investment Journey"}

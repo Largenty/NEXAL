@@ -1,7 +1,9 @@
 export const NAV_ITEMS = [
     { href: "/", label: "Dashboard" },
     { href: "/search", label: "Search" },
-    { href: '/watchlist', label: 'Watchlist' },
+    { href: "/watchlist", label: "Watchlist" },
+    { href: "/profil", label: "Profil" },
+    { href: "/contact", label: "Contact" },
 ];
 
 // Sign-up form select options
@@ -88,7 +90,7 @@ export const MARKET_OVERVIEW_WIDGET_CONFIG = {
         },
     ],
     support_host: "https://www.tradingview.com", // TradingView host
-    backgroundColor: "#141414", // background color
+    backgroundColor: "#022C22", // background color
     width: "100%", // full width
     height: 600, // height in px
     showSymbolLogo: true, // show logo next to symbols
@@ -112,6 +114,7 @@ export const HEATMAP_WIDGET_CONFIG = {
     isMonoSize: false,
     width: "100%",
     height: "600",
+    backgroundColor: "#022C22",
 };
 
 export const TOP_STORIES_WIDGET_CONFIG = {
@@ -133,7 +136,7 @@ export const MARKET_DATA_WIDGET_CONFIG = {
     showSymbolLogo: true,
     colorTheme: "dark",
     isTransparent: false,
-    backgroundColor: "#0F0F0F",
+    backgroundColor: "#022C22",
     symbolsGroups: [
         {
             name: "Financial",
@@ -195,8 +198,8 @@ export const CANDLE_CHART_WIDGET_CONFIG = (symbol: string) => ({
     symbol: symbol.toUpperCase(),
     theme: "dark",
     timezone: "Etc/UTC",
-    backgroundColor: "#141414",
-    gridColor: "#141414",
+    backgroundColor: "#022C22",
+    gridColor: "#022C22",
     watchlist: [],
     withdateranges: false,
     compareSymbols: [],
@@ -221,8 +224,8 @@ export const BASELINE_WIDGET_CONFIG = (symbol: string) => ({
     symbol: symbol.toUpperCase(),
     theme: "dark",
     timezone: "Etc/UTC",
-    backgroundColor: "#141414",
-    gridColor: "#141414",
+    backgroundColor: "#022C22",
+    gridColor: "#022C22",
     watchlist: [],
     withdateranges: false,
     compareSymbols: [],

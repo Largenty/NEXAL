@@ -16,19 +16,19 @@ const InputField = ({
 }: FormInputProps) => {
     return (
         <div className="space-y-2">
-            <Label htmlFor={name} className="form-label">
+            <Label htmlFor={name} className="form-label text-gray-400">
                 {label}
             </Label>
             <Input
-                {...register(name, validation)}
+                {...(register ? register(name, validation) : {})}
                 type={type}
                 placeholder={placeholder}
                 disabled={disabled}
                 value={value}
                 className={cn(
-                    "form-input",
+                    "form-input text-emerald-100 placeholder:text-gray-500 bg-emerald-950/40 border border-emerald-800 focus-visible:ring-2 focus-visible:ring-emerald-500/50 focus-visible:border-emerald-500/70 focus-visible:outline-none backdrop-blur supports-[backdrop-filter]:bg-emerald-950/30",
                     error
-                        ? "border-red-500"
+                        ? "border-red-500 focus-visible:ring-red-500 focus-visible:border-red-500"
                         : disabled && "opacity-50 cursor-not-allowed"
                 )}
             />

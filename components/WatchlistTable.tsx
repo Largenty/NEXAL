@@ -1,3 +1,5 @@
+"use client";
+
 import { WATCHLIST_TABLE_HEADER } from "@/lib/constants";
 import {
     Table,
@@ -7,10 +9,12 @@ import {
     TableHeader,
     TableRow,
 } from "@/components/ui/table";
+import { useRouter } from "next/navigation";
 
 export default function WatchlistTable({
     watchlist = [] as StockWithData[],
 }: WatchlistTableProps) {
+    const router = useRouter();
     return (
         <div className="watchlist-table">
             <Table>
@@ -28,7 +32,13 @@ export default function WatchlistTable({
                 </TableHeader>
                 <TableBody>
                     {watchlist.map((r, idx) => (
-                        <TableRow key={idx} className="table-row">
+                        <TableRow
+                            key={idx}
+                            className="table-row"
+                            role="link"
+                            tabIndex={0}
+                            onClick={() => router.push(`/stocks/${r.symbol}`)}
+                        >
                             <TableCell className="table-cell text-left">
                                 {r.company}
                             </TableCell>

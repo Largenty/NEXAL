@@ -112,6 +112,7 @@ const SignUpPage = () => {
                         },
                     }}
                     disabled={isSubmitting}
+                    type="password"
                 />
 
                 <CountrySelectField
@@ -155,7 +156,7 @@ const SignUpPage = () => {
                 <Button
                     type="submit"
                     variant="secondary"
-                    className="yellow-btn w-full mt-5"
+                    className="green-btn w-full mt-5"
                     disabled={isSubmitting}
                 >
                     {isSubmitting
