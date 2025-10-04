@@ -1,37 +1,84 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+## NEXAL
 
-## Getting Started
+NEXAL is a modern stock market dashboard built with Next.js (App Router), featuring authentication, a watchlist, TradingView charts, market heatmaps, technical analysis, news timeline, and a polished emerald-themed UI.
 
-First, run the development server:
+### Features
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
+-   Authentication with Better Auth (email/password)
+-   Watchlist with alerts and company details
+-   TradingView widgets: market overview, heatmap, advanced charts, technical analysis, symbol info, financials
+-   Search command palette (Cmd/Ctrl + K)
+-   Contact form with Nodemailer
+-   MongoDB persistence (Mongoose)
+
+## Prerequisites
+
+-   Node.js 18+
+-   MongoDB database (Atlas or local)
+
+## Environment Variables
+
+Create a `.env.local` at the project root with:
+
+```env
+# Next.js base URL for Better Auth
+BETTER_AUTH_BASE_URL=http://localhost:3000
+BETTER_AUTH_SECRET=your-long-secret
+
+# Database
+MONGO_URI=mongodb+srv://user:pass@cluster/dbname
+
+# Market data (Finnhub)
+NEXT_PUBLIC_FINNHUB_API_KEY=your-public-or-test-key
+FINNHUB_API_KEY=your-server-key
+
+# Inngest (optional AI features)
+GEMINI_API_KEY=your-gemini-api-key
+
+# Email (contact form)
+NODEMAILER_EMAIL=you@example.com
+NODEMAILER_PASSWORD=app-password-or-token
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+## Install
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+```bash
+pnpm install
+# or
+npm install
+```
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+## Run Dev
 
-## Learn More
+```bash
+pnpm dev
+# or
+npm run dev
+```
 
-To learn more about Next.js, take a look at the following resources:
+Open http://localhost:3000
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+If you use Inngest locally (optional):
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+```bash
+npx inngest-cli@latest dev
+```
 
-## Deploy on Vercel
+## Scripts
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+-   `dev` – start Next.js dev server
+-   `build` – build for production
+-   `start` – run production server
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
- npx inngest-cli@latest dev
+## Tech Stack
+
+-   Next.js App Router, TypeScript, Tailwind
+-   Better Auth + MongoDB (mongodbAdapter)
+-   Mongoose models for app data (e.g., watchlist)
+-   TradingView widgets
+-   Nodemailer for contact emails
+
+## Notes
+
+-   Configure CORS/base URL correctly for Better Auth in `.env.local`.
+-   Ensure `MONGO_URI` points to a reachable MongoDB instance.
