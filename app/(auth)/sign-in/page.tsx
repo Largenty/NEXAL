@@ -70,7 +70,7 @@ const SignInPage = () => {
                     validation={{
                         required: "Password is required",
                         pattern: {
-                            value: /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}$/,
+                            value: /^(?=.*[A-Z])(?=.*\d)[A-Za-z\d@$!%*?&]{8,}$/,
                             message:
                                 "Password must contain at least 8 characters, one uppercase letter, one lowercase letter, one number and one special character",
                         },
